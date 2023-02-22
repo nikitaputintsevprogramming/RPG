@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {    
     public PlayerMovement _playerMovement;
+    public Interactable focus;
 
     public Camera camera;
-
     public LayerMask movementMask;
 
     void Start()
@@ -29,7 +29,9 @@ public class PlayerController : MonoBehaviour
             // Если луч ударяется 
             if(Physics.Raycast(ray, out hit, 1000f))
             {                    
-                Debug.Log(hit.point);
+                _playerMovement.MoveToPoint(hit.point);
+
+                RemoveFocus();
             }
         }
         if(Input.GetMouseButtonDown(1))
@@ -43,7 +45,41 @@ public class PlayerController : MonoBehaviour
             if(Physics.Raycast(ray, out hit, movementMask))
             {         
                 // Фокусировка направления игрока
+
+                Interactable _interactable = hit.collider.gameObject.GetComponent<Interactable>();
+                if(_interactable != null)
+                {
+                    SetFocus(_interactable);
+                }
             }
         }
+    }
+
+    void SetFocus(Interactable newFocus)
+    {
+        if(newFocus != focus)
+        {
+            if(focus != null)
+            {
+                focus.OnDefocused();
+            }
+            
+            focus = newFocus;
+            _playerMovement.FollowTarget(newFocus);
+        }
+        
+        newFocus.OnFocused(transform);        
+    }
+
+    void RemoveFocus()
+    {
+        if(focus != null)
+        {
+            focus.OnDefocused();   
+        }
+
+        // focus.OnDefocused();
+        focus = null;
+        _playerMovement.StopFollowingTarget();
     }
 }
