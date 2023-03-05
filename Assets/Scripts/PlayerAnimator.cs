@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
-{
+{    
     const float motionAnimatorSmoothTime = 0.1f;
 
     NavMeshAgent agent;
@@ -13,12 +13,12 @@ public class PlayerAnimator : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();    
     }
     
-    void Update()
+    void FixedUpdate()
     {
         float speedPercent = agent.velocity.magnitude / agent.speed;
-        animator.SetFloat("SpeedPercent", speedPercent, motionAnimatorSmoothTime, Time.deltaTime);
+        animator.SetFloat("speedPercent", speedPercent, motionAnimatorSmoothTime, Time.deltaTime);
     }
 }
