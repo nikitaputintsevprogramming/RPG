@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 12f3dac3ad43c38488a4771f5d335ca7
+guid: 4941bb4227dc91647ac1b9a0c3ba319a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Standing Idle
+    second: Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -18,7 +18,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: mixamorig:Hips
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Idle
+      name: Idle
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -529,13 +529,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Yaku J Ignite@Standing Idle(Clone)
+    - name: Idle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: Yaku J Ignite@Standing Idle(Clone)
+      parentName: Idle(Clone)
       position: {x: -0.0033493899, y: 1.0879475, z: 0.00067451503}
       rotation: {x: -0.0057846652, y: 0.040992998, z: 0.02478126, w: 0.9988353}
       scale: {x: 1, y: 1, z: 1}
