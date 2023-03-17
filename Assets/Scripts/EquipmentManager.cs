@@ -15,7 +15,12 @@ public class EquipmentManager : MonoBehaviour
 
     #endregion
 
+    public SkinnedMeshRenderer targetMesh;
     Equipment[] currentEquipment;
+    SkinnedMeshRenderer[] currentMeshes;
+
+    public delegate void OnEquipmentChanged(Equipment newItemm, Equipment oldItem);
+    public OnEquipmentChanged onEquipmentChanged;
     
     Inventory inventory;
 
@@ -25,6 +30,7 @@ public class EquipmentManager : MonoBehaviour
 
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
+        currentMeshes = new SkinnedMeshRenderer[numSlots];
     }
 
     public void Equip(Equipment newItem)
@@ -39,7 +45,57 @@ public class EquipmentManager : MonoBehaviour
             inventory.Add(oldItem);
         }
 
+        if(onEquipmentChanged != null)
+        {
+            onEquipmentChanged.Invoke(newItem, oldItem);
+        }
+
         currentEquipment[slotIndex] = newItem;
+        SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.mesh);
+        newMesh.transform.parent = targetMesh.transform;
+
+        newMesh.bones = targetMesh.bones;
+        newMesh.rootBone = targetMesh.rootBone;
+        currentMeshes[slotIndex] = newMesh;
+    }
+
+    public void Unequip(int slotIndex)
+    {
+
+        if(currentEquipment[slotIndex] != null)
+        {
+            if(currentMeshes[slotIndex] != null)
+            {
+                Destroy(currentMeshes[slotIndex].gameObject);           
+            }
+
+            Equipment oldItem = currentEquipment[slotIndex];
+            inventory.Add(oldItem);
+
+            currentEquipment[slotIndex] = null;
+
+            if(onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(null, oldItem);
+            }
+        }
+        
+    }
+
+    public void UnequipAll()
+    {
+        for (int count = 0; count < currentEquipment.Length; count++)
+        {
+            Unequip(count);
+        }
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            UnequipAll();
+        }
     }
 
 }

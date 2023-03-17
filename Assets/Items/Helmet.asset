@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1928a1b1fb0d6804d92104869e532394, type: 3}
-  m_Name: Helmet of fire
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  name: Helmet of fire
-  icon: {fileID: 21300000, guid: 97e3cc0ab945a2e4db72f82eb7929193, type: 3}
+  name: Helmet
+  icon: {fileID: 21300000, guid: 787339d563fb4924396b634ea6cc1b73, type: 3}
   isDefaultItem: 0
   equipSlot: 0
+  mesh: {fileID: 9188613246704296533, guid: a16e375bb41a9774d80b48a6d61ff469, type: 3}
   armourModifier: 2
   damageModifier: 1
