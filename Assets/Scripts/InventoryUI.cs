@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     public Transform ItemsParent;
+    public GameObject inventoryUI;
 
     Inventory _inventory;
 
@@ -20,7 +21,10 @@ public class InventoryUI : MonoBehaviour
     
     void Update()
     {
-        
+        if(Input.GetButtonDown("Inventory"))
+        {
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+        }
     }
 
     void UpdateUI()
