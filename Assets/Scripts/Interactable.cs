@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
     {
         // Этот метод будет перезаписываться, то есть когда мы
         // будем менять или запоминать разные объекты, которых касаемся
-        Debug.Log("Interacting with" + transform.name);
+        // Debug.Log("Interacting with" + transform.name);
     }
 
     void Update()
